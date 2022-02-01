@@ -5,11 +5,12 @@ describe("testing navigation", () => {
     cy.visit("/");
   });
 
-    // it('redirect to category after click on main categories of navigation',()=>{
-    //     cy.get('.nav.navbar-nav > li a').first().click()
-    //     cy.url().should('eq', 'https://demo.opencart.com/index.php?route=product/category&path=20')
-    //     // i suggest to write this navigation different better way
-    // })
+    it('redirect to category after click on main categories of navigation',()=>{
+        cy.get('.nav.navbar-nav > li a').first().click()
+        cy.url().should('eq', 'https://demo.opencart.com/index.php?route=product/category&path=20')
+        // I suggest to write this navigation different better way as redirect to main categories not working
+        // I also checked if there is element <a> with href and it is.
+    })
 
   it("show dropdown on hover if contains class dropdown", () => {
     cy.get(".nav.navbar-nav > li.dropdown").each(($li) => {

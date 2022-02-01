@@ -18,22 +18,22 @@ describe("testing shopping", () => {
     cy.url().should("eq", "https://demo.opencart.com/index.php?route=product/product&path=20_27&product_id=41");
   });
 
-  // it('product out of stock',()=>{
-  //     cy.contains('Availability: Out Of Stock')
-  //     cy.contains('button','Add to Cart').should('be.disabled')
-  // })
+  it('product out of stock',()=>{
+      cy.contains('Availability: Out Of Stock')
+      cy.contains('button','Add to Cart').should('be.disabled')
+  })
 
-  // it('none(0) product to cart',()=>{
-  //     cy.get('input[name=quantity]').clear().type('0')
-  //     cy.contains('button','Add to Cart').click()
-  //     cy.get('.alert').should('contain','Not Success: Cannot add 0 items to cart!')
-  // })
+  it('none(0) product to cart',()=>{
+      cy.get('input[name=quantity]').clear().type('0')
+      cy.contains('button','Add to Cart').click()
+      cy.get('.alert').should('contain','Not Success: Cannot add 0 items to cart!')
+  })
 
-  // it('minus product to cart',()=>{
-  //     cy.get('input[name=quantity]').clear().type('-2')
-  //     cy.contains('button','Add to Cart').click()
-  //     cy.get('.alert').should('contain','Not Success: To remove items from cart you should visit shopping cart!')
-  // })
+  it('minus product to cart',()=>{
+      cy.get('input[name=quantity]').clear().type('-2')
+      cy.contains('button','Add to Cart').click()
+      cy.get('.alert').should('contain','Not Success: To remove items from cart you should visit shopping cart!')
+  })
 
   it("add product to cart", () => {
     cy.get("input[name=quantity]").clear().type("2");
