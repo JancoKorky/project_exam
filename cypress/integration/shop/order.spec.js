@@ -18,22 +18,22 @@ describe("testing shopping", () => {
     cy.url().should("eq", "https://demo.opencart.com/index.php?route=product/product&path=20_27&product_id=41");
   });
 
-  it('product out of stock',()=>{
-      cy.contains('Availability: Out Of Stock')
-      cy.contains('button','Add to Cart').should('be.disabled')
-  })
+  // it('product out of stock',()=>{
+  //     cy.contains('Availability: Out Of Stock')
+  //     cy.contains('button','Add to Cart').should('be.disabled')
+  // })
 
-  it('none(0) product to cart',()=>{
-      cy.get('input[name=quantity]').clear().type('0')
-      cy.contains('button','Add to Cart').click()
-      cy.get('.alert').should('contain','Not Success: Cannot add 0 items to cart!')
-  })
+  // it('none(0) product to cart',()=>{
+  //     cy.get('input[name=quantity]').clear().type('0')
+  //     cy.contains('button','Add to Cart').click()
+  //     cy.get('.alert').should('contain','Not Success: Cannot add 0 items to cart!')
+  // })
 
-  it('minus product to cart',()=>{
-      cy.get('input[name=quantity]').clear().type('-2')
-      cy.contains('button','Add to Cart').click()
-      cy.get('.alert').should('contain','Not Success: To remove items from cart you should visit shopping cart!')
-  })
+  // it('minus product to cart',()=>{
+  //     cy.get('input[name=quantity]').clear().type('-2')
+  //     cy.contains('button','Add to Cart').click()
+  //     cy.get('.alert').should('contain','Not Success: To remove items from cart you should visit shopping cart!')
+  // })
 
   it("add product to cart", () => {
     cy.get("input[name=quantity]").clear().type("2");
@@ -64,6 +64,13 @@ describe("testing shopping", () => {
       .next()
       .should("contain", "$244.00");
   });
+
+  it('remove product from cart and show alert',()=>{
+    cy.get(".table-responsive tbody tr td").find('.btn.btn-danger').click()
+    // from this point there should be some alert popup if we want to remove an item
+    // and also, lets say if there will not be any popup, then at least there should be alert informing you about removed item from cart, including link/option to reverse this and bring item back.
+    cy.get('.alert').should('contain','You removed item{link} from cart, do you want to bring it back{link}?')
+  })
 
   it("Checkout products", () => {
     //   not possible on this demo website
